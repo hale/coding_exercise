@@ -39,3 +39,5 @@ group :development, :test do
   gem 'flexmock', '~> 1.3.1'
   gem 'guard-rspec', '~> 4.2.7', require: false
 end
+
+gem 'foundation-rails', '~> 5.2.2'
