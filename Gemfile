@@ -33,7 +33,9 @@ group :doc do
 end
 
 group :development, :test do
+  gem 'rspec', '~> 3.0.0.rc1'
   gem 'rspec-rails', '~> 3.0.0.rc1'
   gem 'factory_girl_rails', '~> 4.4.1'
   gem 'flexmock', '~> 1.3.1'
+  gem 'guard-rspec', '~> 4.2.7', require: false
 end
