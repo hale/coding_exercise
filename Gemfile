@@ -40,4 +40,6 @@ group :development, :test do
   gem 'guard-rspec', '~> 4.2.7', require: false
 end
 
+gem 'codeclimate-test-reporter', group: :test, require: false
+
 gem 'foundation-rails', '~> 5.2.2'
