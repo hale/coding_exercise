@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.4'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'pg', '0.17.1'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2'
@@ -32,14 +32,14 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+group :development, :test do
+  gem 'rspec', '~> 3.0.0.rc1'
+  gem 'rspec-rails', '~> 3.0.0.rc1'
+  gem 'factory_girl_rails', '~> 4.4.1'
+  gem 'flexmock', '~> 1.3.1'
+  gem 'guard-rspec', '~> 4.2.7', require: false
+end
 
-# Use unicorn as the app server
-# gem 'unicorn'
+gem 'codeclimate-test-reporter', group: :test, require: false
 
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
+gem 'foundation-rails', '~> 5.2.2'
