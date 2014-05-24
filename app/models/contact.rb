@@ -8,4 +8,7 @@ class Contact < ActiveRecord::Base
   has_many :phone_numbers, dependent: :destroy
   belongs_to :address
 
+  accepts_nested_attributes_for :address
+  accepts_nested_attributes_for :phone_numbers, reject_if: :all_blank
+
 end

@@ -14,4 +14,7 @@ describe Contact, :type => :model do
 
   it { should have_many(:phone_numbers).dependent(:destroy) }
   it { should belong_to :address }
+
+  it { should accept_nested_attributes_for(:address) }
+  it { should accept_nested_attributes_for(:phone_numbers) }
 end
