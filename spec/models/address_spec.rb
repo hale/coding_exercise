@@ -13,6 +13,15 @@ describe Address, :type => :model do
     it { should allow_value("Boston").for(:city) }
     it { should allow_value("San Jóse").for(:city) }
     it { should_not allow_value("23rd city").for(:city) }
+    it { should_not allow_value("Bo\nston").for(:city) }
+
+    it { should allow_value("CA").for(:state) }
+    it { should allow_value("Texas").for(:state) }
+    it { should allow_value("West Virginia").for(:state) }
+
+    it { should_not allow_value("texas").for(:state) }
+    it { should_not allow_value("Nemadeupa").for(:state) }
+    it { should_not allow_value("ZZ").for(:state) }
 
   end
 end
