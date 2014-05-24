@@ -23,5 +23,11 @@ describe Address, :type => :model do
     it { should_not allow_value("Nemadeupa").for(:state) }
     it { should_not allow_value("ZZ").for(:state) }
 
+    it { should allow_value("12345").for(:zip_code) }
+    it { should_not allow_value("123456").for(:zip_code) }
+    it { should_not allow_value("1234").for(:zip_code) }
+    it { should_not allow_value("12 45").for(:zip_code) }
+    it { should_not allow_value("a2345").for(:zip_code) }
+
   end
 end
