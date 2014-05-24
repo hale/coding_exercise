@@ -1,2 +1,58 @@
 <h2>New Contact</h2>
 
+<%= form_for(@contact) do |f| %>
+  <div class="field">
+    <%= f.label :first_name %><br>
+    <%= f.text_field :first_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name %><br>
+    <%= f.text_field :last_name %>
+  </div>
+
+  <h3>Address</h3>
+  <%= f.fields_for(:address) do |ff| %>
+    <div class="field">
+      <%= ff.label :first_line %><br>
+      <%= ff.text_field :first_line %>
+    </div>
+
+    <div class="field">
+      <%= ff.label :second_line %><br>
+      <%= ff.text_field :second_line %>
+    </div>
+
+    <div class="field">
+      <%= ff.label :city %><br>
+      <%= ff.text_field :city %>
+    </div>
+
+    <div class="field">
+      <%= ff.label :state %><br>
+      <%= ff.text_field :state %>
+    </div>
+
+    <div class="field">
+      <%= ff.label :zip_code %><br>
+      <%= ff.text_field :zip_code %>
+    </div>
+  <% end %>
+
+  <h3>Phone Numbers</h3>
+
+  <%= f.fields_for(:phone_numbers) do |ff| %>
+    <div class="field">
+      <%= ff.label :number %>
+      <%= ff.text_field :number %>
+    </div>
+  <% end %>
+
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>
+
