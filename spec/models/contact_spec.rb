@@ -14,4 +14,27 @@ describe Contact, :type => :model do
 
   it { should have_many(:phone_numbers).dependent(:destroy) }
   it { should belong_to :address }
+
+  describe "Phone numbers" do
+    it "first phone number entered becomes primary" do
+      contact = FactoryGirl.create(:contact)
+      phone_number = FactoryGirl.create(:phone_number, contact: contact)
+      expect(phone_number.primary).to eq(true)
+    end
+
+    it "second phone number entered is not primary" do
+      contact = FactoryGirl.create(:contact)
+      FactoryGirl.create(:phone_number, contact: contact)
+      phone_number = FactoryGirl.create(:phone_number, contact: contact)
+      expect(phone_number.primary).to eq(false)
+    end
+
+    it "makes another number primary when primary number is destroyed" do
+      contact = FactoryGirl.create(:contact)
+      primary = FactoryGirl.create(:phone_number, contact: contact)
+      normal = FactoryGirl.create(:phone_number, contact: contact)
+      primary.destroy
+      expect(normal.reload.primary).to eq(true)
+    end
+  end
 end
