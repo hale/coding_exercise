@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140524141034) do
+ActiveRecord::Schema.define(version: 20140524143557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,5 +45,9 @@ ActiveRecord::Schema.define(version: 20140524141034) do
   end
 
   add_index "phone_numbers", ["contact_id"], name: "index_phone_numbers_on_contact_id", using: :btree
+
+  add_foreign_key "contacts", "addresses", name: "contacts_address_id_fk"
+
+  add_foreign_key "phone_numbers", "contacts", name: "phone_numbers_contact_id_fk", dependent: :delete
 
 end

@@ -46,3 +46,4 @@ group :test do
 end
 
 gem 'foundation-rails', '~> 5.2.2'
+gem 'foreigner', '~> 1.6.1'

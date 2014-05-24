@@ -12,6 +12,6 @@ describe Contact, :type => :model do
     it { should_not allow_value("G4m3r").for(name) }
   end
 
-  it { should have_many :phone_numbers }
+  it { should have_many(:phone_numbers).dependent(:destroy) }
   it { should belong_to :address }
 end
