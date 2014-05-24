@@ -5,7 +5,7 @@ FactoryGirl.define do
     line_1 "MyString"
     line_2 "MyString"
     city "MyString"
-    state "MyString"
-    zip_code "MyString"
+    state "CA"
+    zip_code "12345"
   end
 end
