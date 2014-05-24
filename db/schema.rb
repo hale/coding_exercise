@@ -11,9 +11,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20140524143557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: true do |t|
+    t.string   "line_1"
+    t.string   "line_2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip_code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "contacts", force: true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "address_id"
+  end
+
+  add_index "contacts", ["address_id"], name: "index_contacts_on_address_id", using: :btree
+
+  create_table "phone_numbers", force: true do |t|
+    t.string   "number"
+    t.boolean  "primary",    default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "contact_id",                 null: false
+  end
+
+  add_index "phone_numbers", ["contact_id"], name: "index_phone_numbers_on_contact_id", using: :btree
+
+  add_foreign_key "contacts", "addresses", name: "contacts_address_id_fk"
+
+  add_foreign_key "phone_numbers", "contacts", name: "phone_numbers_contact_id_fk", dependent: :delete
 
 end
