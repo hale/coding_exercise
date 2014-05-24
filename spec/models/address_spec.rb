@@ -5,11 +5,14 @@ describe Address, :type => :model do
     [:line_1, :line_2].each do |street_addr|
       it { should allow_value("34 Jute Street").for(street_addr) }
       it { should allow_value("23 Jétçe タカ").for(street_addr) }
-
       it { should_not allow_value("!").for(street_addr) }
       it { should_not allow_value("23\nsomething").for(street_addr) }
       it { should_not allow_value("street!").for(street_addr) }
     end
+
+    it { should allow_value("Boston").for(:city) }
+    it { should allow_value("San Jóse").for(:city) }
+    it { should_not allow_value("23rd city").for(:city) }
 
   end
 end
