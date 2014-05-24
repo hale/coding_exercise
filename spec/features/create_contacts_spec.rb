@@ -46,11 +46,19 @@ describe "Creating contacts" do
         fill_in "contact_address_attributes_line_2", with: "Edmonson Street"
         fill_in "contact_address_attributes_city", with: "San Jose"
         fill_in "contact_address_attributes_state", with: "NY"
-        fill_in "contact_address_attributes_zip_code", with: "143278"
+        fill_in "contact_address_attributes_zip_code", with: "14378"
         fill_in "contact_phone_numbers_attributes_0_number", with: "231-242-2211"
         click_on "Create Contact"
+        expect(current_path).to match(/contacts\/\d/)
       end
     end
+
+    it "shows errors with invalid attributes" do
+      visit '/contacts/new'
+      click_on "Create Contact"
+      expect(page).to have_selector("#error_explanation")
+    end
+
   end
 
 end
