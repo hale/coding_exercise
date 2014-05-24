@@ -8,4 +8,6 @@ describe PhoneNumber, :type => :model do
   it { should_not allow_value("abc.123.1234").for(:number) }
   it { should_not allow_value("123-1-3-1234").for(:number) }
   it { should_not allow_value("123-1\n3-1234").for(:number) }
+
+  it { should belong_to(:contact) }
 end
