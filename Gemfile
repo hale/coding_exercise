@@ -44,6 +44,7 @@ group :test do
   gem 'codeclimate-test-reporter', require: false
   gem 'shoulda-matchers'
   gem 'capybara', git: "https://github.com/jnicklas/capybara.git"
+  gem 'launchy'
 end
 
 gem 'foundation-rails', '~> 5.2.2'
