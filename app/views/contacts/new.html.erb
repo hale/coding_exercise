@@ -1,6 +1,6 @@
 <h2>New Contact</h2>
 
-<%= form_for(@contact) do |f| %>
+<%= form_for(setup_contact(@contact)) do |f| %>
   <div class="field">
     <%= f.label :first_name %><br>
     <%= f.text_field :first_name %>
@@ -14,13 +14,13 @@
   <h3>Address</h3>
   <%= f.fields_for(:address) do |ff| %>
     <div class="field">
-      <%= ff.label :first_line %><br>
-      <%= ff.text_field :first_line %>
+      <%= ff.label :line_1 %><br>
+      <%= ff.text_field :line_1 %>
     </div>
 
     <div class="field">
-      <%= ff.label :second_line %><br>
-      <%= ff.text_field :second_line %>
+      <%= ff.label :line_2 %><br>
+      <%= ff.text_field :line_2 %>
     </div>
 
     <div class="field">
