@@ -7,4 +7,6 @@ class Address < ActiveRecord::Base
   validates_inclusion_of :state, in: Constants::STATES.flatten
 
   validates_format_of :zip_code, with: /\A[\d]{5}\z/
+
+  has_one :contact
 end

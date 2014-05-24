@@ -28,6 +28,7 @@ describe Address, :type => :model do
     it { should_not allow_value("1234").for(:zip_code) }
     it { should_not allow_value("12 45").for(:zip_code) }
     it { should_not allow_value("a2345").for(:zip_code) }
-
   end
+
+  it { should have_one :contact }
 end

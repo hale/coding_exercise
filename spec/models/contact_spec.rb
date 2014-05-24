@@ -13,4 +13,5 @@ describe Contact, :type => :model do
   end
 
   it { should have_many :phone_numbers }
+  it { should belong_to :address }
 end
