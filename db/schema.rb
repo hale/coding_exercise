@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20140524132038) do
     t.datetime "updated_at"
   end
 
-  create_table "phones", force: true do |t|
+  create_table "phone_numbers", force: true do |t|
     t.string   "number"
     t.boolean  "primary",    default: false, null: false
     t.datetime "created_at"

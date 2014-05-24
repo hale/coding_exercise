@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Phone, :type => :model do
+describe PhoneNumber, :type => :model do
   it { should validate_presence_of :number }
   it { should allow_value("123-123-1234").for(:number) }
   it { should_not allow_value("1231231234").for(:number) }
