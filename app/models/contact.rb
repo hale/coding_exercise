@@ -15,8 +15,12 @@ class Contact < ActiveRecord::Base
 
   include PgSearch
 
-  pg_search_scope :search_first_name, against: :first_name
-  pg_search_scope :search_last_name, against: :last_name
+  pg_search_scope :search, lambda { |on, query|
+    {
+      against: on,
+      query: query
+    }
+  }
 
   def as_json(options={})
     super({only: :id}.merge(options)).tap do |json|
