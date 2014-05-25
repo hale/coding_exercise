@@ -50,9 +50,9 @@
 
   <h3>Phone Numbers</h3>
 
-  <%= f.fields_for(:phone_numbers) do |ff| %>
+  <%= f.fields_for(:phone_numbers) do |ff, i| %>
     <div class="field">
-      <%= ff.label :number %>
+      <%= ff.label :number, ff.object.primary ? "Number (Primary)" : "Number" %>
       <%= ff.text_field :number %>
     </div>
   <% end %>

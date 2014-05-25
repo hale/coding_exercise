@@ -25,6 +25,19 @@ class ContactsController < ApplicationController
     render json: results
   end
 
+  def edit
+    @contact = Contact.find(params[:id])
+  end
+
+  def update
+    @contact = Contact.find(params[:id])
+    if @contact.update(contact_params)
+      redirect_to @contact, notice: "Contact succesfully updated."
+    else
+      render action: 'edit'
+    end
+  end
+
   private
 
   def searcher

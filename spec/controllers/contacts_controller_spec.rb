@@ -50,4 +50,37 @@ describe ContactsController, :type => :controller do
       expect(response.body).to eq({ id: contact.id, full_name: "Bob Hope" }.to_json)
     end
   end
+
+  describe "GET edit" do
+    it "assigns the right contact" do
+      contact = FactoryGirl.create(:contact, first_name: "Bob", last_name: "Hope")
+      get :edit, { id: contact.id }
+      expect(assigns(:contact)).to eq(contact)
+    end
+  end
+
+  describe "PATCH update" do
+    context "with valid attributes" do
+      it "updates the contact" do
+        contact = FactoryGirl.create(:contact, first_name: "Bob", last_name: "Hope")
+        flexmock(Contact).new_instances.should_receive(:update).with({ first_name: "Rob" }).once
+        put :update, { id: contact.id, contact: { first_name: "Rob" }}
+        expect(assigns(:contact)).to eq(contact)
+      end
+
+      it "redirects to contact show" do
+        contact = FactoryGirl.create(:contact, first_name: "John", last_name: "Hope")
+        put :update, { id: contact.id, contact: { last_name: "Snow" } }
+        expect(response).to redirect_to contact
+      end
+    end
+
+    context "with invalid attributes" do
+      it "re-renders the form" do
+        contact = FactoryGirl.create(:contact, first_name: "John", last_name: "Hope")
+        put :update, { id: contact.id, contact: { last_name: "" } }
+        expect(response).to render_template(:edit)
+      end
+    end
+  end
 end

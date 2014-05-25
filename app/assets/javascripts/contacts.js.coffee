@@ -25,7 +25,7 @@ $('input.contact_match').typeahead(null,
   displayKey: 'full_name',
   source: @engine.ttAdapter()
 ).bind "typeahead:selected", (obj, datum, name) ->
-  window.history.pushState({ id: datum.id }, '', ("/contacts/" + datum.id))
+  window.history.pushState({ id: datum.id }, '', ("/contacts/" + datum.id + "/edit"))
   window.location.reload()
   return
 
