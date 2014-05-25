@@ -51,14 +51,12 @@ describe "Creating contacts" do
         click_on "Create Contact"
         expect(current_path).to match(/contacts\/\d/)
       end
-    end
 
-    it "shows errors with invalid attributes" do
-      visit '/contacts/new'
-      click_on "Create Contact"
-      expect(page).to have_selector("#error_explanation")
+      it "shows errors with invalid attributes" do
+        visit '/contacts/new'
+        click_on "Create Contact"
+        expect(page).to have_selector("#error_explanation")
+      end
     end
-
   end
-
 end
