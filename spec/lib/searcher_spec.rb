@@ -34,4 +34,13 @@ describe Searcher do
       expect(searcher.search(query: "ja", on: "contact_first_name")).to eq([contact])
     end
   end
+
+  describe "multi_search" do
+    it "searches on multiple fields" do
+      c1 = FactoryGirl.create(:contact, first_name: "Adam")
+      c2 = FactoryGirl.create(:contact, last_name: "Jones")
+      results = searcher.multi_search(query: "Adam Jones", scopes: ["contact_first_name", "contact_last_name"])
+      expect(results).to eq([c1,c2])
+    end
+  end
 end

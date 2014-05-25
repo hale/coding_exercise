@@ -9,4 +9,10 @@ class Searcher
     raise "Cannot search on #{on}" unless SEARCH_SCOPES.include?(on)
     Contact.search on.gsub(/contact_/, ''), query
   end
+
+  def multi_search(query:, scopes:)
+    invalid_scopes = scopes - SEARCH_SCOPES
+    raise "Cannot search on #{invalid_scopes.join(" or ")}" if invalid_scopes.any?
+    Contact.search scopes.map{ |scope| scope.gsub(/contact_/, '') }, query
+  end
 end

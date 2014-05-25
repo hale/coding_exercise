@@ -1,7 +1,17 @@
+<h2>Search contacts</h2>
+
 <%= form_tag(query_contacts_path, method: :get, id: "search_form") do %>
-  <%= label_tag(:query, "Search contacts:") %>
-  <%= text_field_tag(:query, nil, id: "search_input") %>
-  <%= label_tag(:on, "First name") %>
-  <%= radio_button_tag(:on, "contact_first_name", true) %>
+  <div class="field">
+    <%= label_tag(:query, "Search contacts:") %>
+    <%= text_field_tag(:query, nil, id: "search_input") %>
+  </div>
+
+  <% Searcher::SEARCH_SCOPES.each do |scope| %>
+    <div class="field">
+      <%= label_tag("scopes[][#{scope}]", scope.humanize) %>
+      <%= check_box_tag("scopes[][#{scope}]", scope, name: "scopes[]") %>
+    </div>
+  <% end %>
+
   <%= submit_tag("Search") %>
 <% end %>

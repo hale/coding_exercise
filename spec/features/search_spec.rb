@@ -6,13 +6,23 @@ describe "Searching for contacts" do
     expect(page).to have_selector("form#search_form")
   end
 
-  context "search first names" do
-    it "returns some results" do
-      FactoryGirl.create(:contact, first_name: "Ka", last_name: "Jarek")
-      visit '/'
-      fill_in "search_input", with: "Ka"
-      click_button "Search"
-      expect(page).to have_content("Ka Jarek")
-    end
+  it "can search on first names" do
+    FactoryGirl.create(:contact, first_name: "Ka", last_name: "Jarek")
+    visit '/'
+    fill_in "search_input", with: "Ka"
+    check "Contact first name"
+    click_button "Search"
+    expect(page).to have_content("Ka Jarek")
+  end
+
+  it "can search both first and last names" do
+    FactoryGirl.create(:contact, first_name: "Ka")
+    FactoryGirl.create(:contact, last_name: "Jarek")
+    visit '/'
+    fill_in "search_input", with: "Ka Jarek"
+    check "Contact first name"
+    check "Contact last name"
+    click_button "Search"
+    expect(page).to have_content("Ka Jarek")
   end
 end

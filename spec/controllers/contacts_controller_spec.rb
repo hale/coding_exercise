@@ -93,12 +93,12 @@ describe ContactsController, :type => :controller do
 
   describe "GET query" do
     it "assigns some results" do
-      get :query, { on: "contact_first_name" }
+      get :query, { scopes: [{"contact_first_name" => "contact_first_name"}] }
       expect(assigns(:results)).to_not be_nil
     end
 
     it "redirects to a results page" do
-      get :query, { on: "contact_first_name" }
+      get :query, { scopes: [{"contact_first_name" => "contact_first_name"}] }
       expect(response).to render_template(:results)
     end
   end
