@@ -83,4 +83,23 @@ describe ContactsController, :type => :controller do
       end
     end
   end
+
+  describe "GET search" do
+    it "is a success" do
+      get :search
+      expect(response).to be_successful
+    end
+  end
+
+  describe "GET query" do
+    it "assigns some results" do
+      get :query, { on: "contact_first_name" }
+      expect(assigns(:results)).to_not be_nil
+    end
+
+    it "redirects to a results page" do
+      get :query, { on: "contact_first_name" }
+      expect(response).to render_template(:results)
+    end
+  end
 end

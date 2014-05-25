@@ -1,0 +1,7 @@
+<%= form_tag(query_contacts_path, method: :get, id: "search_form") do %>
+  <%= label_tag(:query, "Search contacts:") %>
+  <%= text_field_tag(:query, nil, id: "search_input") %>
+  <%= label_tag(:on, "First name") %>
+  <%= radio_button_tag(:on, "contact_first_name", true) %>
+  <%= submit_tag("Search") %>
+<% end %>

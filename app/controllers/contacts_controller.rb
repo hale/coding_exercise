@@ -38,6 +38,14 @@ class ContactsController < ApplicationController
     end
   end
 
+  def search
+  end
+
+  def query
+    @results = searcher.search(on: params[:on], query: params[:query])
+    render :results
+  end
+
   private
 
   def searcher
