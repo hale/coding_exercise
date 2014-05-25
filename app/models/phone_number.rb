@@ -22,7 +22,7 @@ class PhoneNumber < ActiveRecord::Base
   end
 
   def promote_another_if_primary
-    unless contact.phone_numbers.where(primary: true).any?
+    if contact && contact.phone_numbers.any? && contact.phone_numbers.where(primary: true).blank?
       contact.phone_numbers.first.update_attribute(:primary, true)
     end
   end

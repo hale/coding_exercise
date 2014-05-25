@@ -47,6 +47,11 @@ class ContactsController < ApplicationController
     render :results
   end
 
+  def destroy
+    Contact.find(params[:id]).destroy
+    redirect_to contacts_path
+  end
+
   private
 
   def searcher
