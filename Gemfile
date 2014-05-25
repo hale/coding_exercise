@@ -51,7 +51,7 @@ group :test do
   gem 'poltergeist', '~> 1.5.0'
 end
 
-gem 'rails-assets-foundation'
+gem 'foundation-rails', '~> 5.2.0.0'
 gem 'foreigner', '~> 1.6.1'
 gem 'pg_search', '~> 0.7.3'
 gem 'rails-assets-typeahead.js'
