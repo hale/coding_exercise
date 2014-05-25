@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require foundation
 //= require turbolinks
+//= require typeahead.js
 //= require_tree .
 
 $(function(){ $(document).foundation(); });

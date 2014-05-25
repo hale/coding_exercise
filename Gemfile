@@ -52,3 +52,4 @@ end
 gem 'rails-assets-foundation'
 gem 'foreigner', '~> 1.6.1'
 gem 'pg_search', '~> 0.7.3'
+gem 'rails-assets-typeahead.js'
