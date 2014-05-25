@@ -50,3 +50,4 @@ end
 
 gem 'foundation-rails', '~> 5.2.2'
 gem 'foreigner', '~> 1.6.1'
+gem 'pg_search', '~> 0.7.3'

@@ -13,6 +13,10 @@ class Contact < ActiveRecord::Base
   accepts_nested_attributes_for :address, reject_if: :all_blank
   accepts_nested_attributes_for :phone_numbers, reject_if: :all_blank
 
+  include PgSearch
+
+  pg_search_scope :search_first_name, against: :first_name
+
   private
 
   def either_address_or_number
