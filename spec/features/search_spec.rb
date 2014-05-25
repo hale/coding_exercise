@@ -35,4 +35,14 @@ describe "Searching for contacts" do
     click_button "Search"
     expect(page).to have_content("Snails")
   end
+
+  it "can search phone numbers" do
+    contact = FactoryGirl.create(:contact, first_name: "John")
+    FactoryGirl.create(:phone_number, number: "919-191-1299", contact: contact)
+    visit '/'
+    fill_in "search_input", with: "919-191-1299"
+    check "Phone number number"
+    click_button "Search"
+    expect(page).to have_content("John")
+  end
 end

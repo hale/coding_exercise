@@ -4,8 +4,17 @@ class Searcher
     FIRST_NAME = "contact_first_name",
     LAST_NAME = "contact_last_name",
     ADDRESS_LINE_1 = "address_line_1",
+    ADDRESS_LINE_2 = "address_line_2",
+    ADDRESS_CITY = "address_city",
     ADDRESS_STATE = "address_state",
-    ADDRESS_CITY = "address_city"
+    ADDRESS_ZIP_CODE = "address_zip_code",
+    PHONE_NUMBER_NUMBER = "phone_number_number"
+  ]
+
+  SEARCH_MODELS = [
+    CONTACT = /contact_/,
+    ADDRESS = /address_/,
+    PHONE_NUMBER = /phone_number_/
   ]
 
   def search(query:, on:)
@@ -19,14 +28,16 @@ class Searcher
 
     results = []
     scopes.each do |scope|
-      model, field = scope.split("_", 2)
-      if model == 'contact'
-        results << (Contact.search field, query)
-      else
-        model_results = model.capitalize.constantize.search field, query
+      if CONTACT.match(scope)
+        results << (Contact.search scope.gsub(CONTACT, ''), query)
+      elsif ADDRESS.match(scope)
+        model_results = Address.search scope.gsub(ADDRESS, ''), query
+        results << model_results.map(&:contact)
+      elsif PHONE_NUMBER.match(scope)
+        model_results = PhoneNumber.search scope.gsub(PHONE_NUMBER, ''), query
         results << model_results.map(&:contact)
       end
     end
-    results.flatten
+    results.flatten.uniq
   end
 end
