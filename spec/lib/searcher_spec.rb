@@ -27,4 +27,11 @@ describe Searcher do
       searcher.search(query: "tst", on: "nevergoingtobeascope")
     }.to raise_error
   end
+
+  describe "partial matches" do
+    it "matches a contact with only first few letters of their name" do
+      contact = FactoryGirl.create(:contact, first_name: "Jason")
+      expect(searcher.search(query: "ja", on: "contact_first_name")).to eq([contact])
+    end
+  end
 end

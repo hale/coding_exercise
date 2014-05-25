@@ -6,10 +6,7 @@ class Searcher
   ]
 
   def search(query:, on:)
-    case on
-    when FIRST_NAME then Contact.search_first_name(query)
-    when LAST_NAME then Contact.search_last_name(query)
-    else raise "Cannot search on #{on}"
-    end
+    raise "Cannot search on #{on}" unless SEARCH_SCOPES.include?(on)
+    Contact.search on.gsub(/contact_/, ''), query
   end
 end
