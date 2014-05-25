@@ -38,6 +38,15 @@ class ContactsController < ApplicationController
     end
   end
 
+  def search
+  end
+
+  def query
+    scopes = params[:scopes].first.keys
+    @results = searcher.multi_search(scopes: scopes, query: params[:query])
+    render :results
+  end
+
   private
 
   def searcher

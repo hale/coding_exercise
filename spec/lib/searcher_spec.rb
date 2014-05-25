@@ -34,4 +34,33 @@ describe Searcher do
       expect(searcher.search(query: "ja", on: "contact_first_name")).to eq([contact])
     end
   end
+
+  describe "multi_search" do
+    it "searches on multiple fields" do
+      c1 = FactoryGirl.create(:contact, first_name: "Adam")
+      c2 = FactoryGirl.create(:contact, last_name: "Jones")
+      results = searcher.multi_search(
+        query: "Adam Jones",
+        scopes: ["contact_first_name", "contact_last_name"]
+      )
+      expect(results).to eq([c1,c2])
+    end
+
+    it "errors when provided with an invalid scope" do
+      expect{
+        searcher.multi_search(query: "tst", scopes: ["notascopeever"])
+      }.to raise_error
+    end
+
+    it "can search through addresses" do
+      addr = FactoryGirl.create(:address, state: "California")
+      contact = FactoryGirl.create(:contact, address: addr)
+      results = searcher.multi_search(
+        query: "California",
+        scopes: ["address_state"]
+      )
+      expect(results).to eq([contact])
+    end
+
+  end
 end

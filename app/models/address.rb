@@ -9,4 +9,12 @@ class Address < ActiveRecord::Base
   validates_format_of :zip_code, with: /\A[\d]{5}\z/
 
   has_one :contact
+
+  include PgSearch
+  pg_search_scope :search, lambda { |on, query|
+    {
+      against: on,
+      query: query
+    }
+  }
 end

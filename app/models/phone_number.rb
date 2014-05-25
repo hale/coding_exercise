@@ -7,6 +7,14 @@ class PhoneNumber < ActiveRecord::Base
   before_save :make_primary_if_first
   after_destroy :promote_another_if_primary
 
+  include PgSearch
+  pg_search_scope :search, lambda { |on, query|
+    {
+      against: on,
+      query: query
+    }
+  }
+
   private
 
   def make_primary_if_first
