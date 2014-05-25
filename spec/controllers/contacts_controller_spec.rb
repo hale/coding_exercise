@@ -36,4 +36,18 @@ describe ContactsController, :type => :controller do
       expect(assigns(:contact)).to eq(@contact)
     end
   end
+
+  describe "GET autocomplete" do
+    it "conducts a search on a specific form field with the contents of the form" do
+      flexmock(Searcher).new_instances.should_receive(:search).with(query: "Katie", on: "first_name").once
+      get :autocomplete, { query: "Katie", on: "first_name" }
+    end
+
+    it "renders json of the contact, with ID and full name" do
+      contact = FactoryGirl.create(:contact, first_name: "Bob", last_name: "Hope")
+      flexmock(Searcher).new_instances.should_receive(:search).and_return(contact)
+      get :autocomplete
+      expect(response.body).to eq({ id: contact.id, full_name: "Bob Hope" }.to_json)
+    end
+  end
 end

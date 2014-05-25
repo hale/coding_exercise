@@ -20,7 +20,16 @@ class ContactsController < ApplicationController
     @contacts = Contact.all
   end
 
+  def autocomplete
+    results = searcher.search(on: params[:on], query: params[:query])
+    render json: results
+  end
+
   private
+
+  def searcher
+    @searcher ||= Searcher.new
+  end
 
   def contact_params
     params.require(:contact).permit([

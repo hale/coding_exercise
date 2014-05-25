@@ -17,6 +17,12 @@ class Contact < ActiveRecord::Base
 
   pg_search_scope :search_first_name, against: :first_name
 
+  def as_json(options={})
+    super({only: :id}.merge(options)).tap do |json|
+      json["full_name"] = "#{first_name} #{last_name}"
+    end
+  end
+
   private
 
   def either_address_or_number
