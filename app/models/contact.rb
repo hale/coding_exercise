@@ -13,6 +13,17 @@ class Contact < ActiveRecord::Base
   accepts_nested_attributes_for :address, reject_if: :all_blank
   accepts_nested_attributes_for :phone_numbers, reject_if: :all_blank
 
+  include PgSearch
+
+  pg_search_scope :search_first_name, against: :first_name
+  pg_search_scope :search_last_name, against: :last_name
+
+  def as_json(options={})
+    super({only: :id}.merge(options)).tap do |json|
+      json["full_name"] = "#{first_name} #{last_name}"
+    end
+  end
+
   private
 
   def either_address_or_number

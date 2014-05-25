@@ -8,7 +8,9 @@ require 'rspec/rails'
 require 'shoulda/matchers'
 require 'capybara/rails'
 require 'capybara/rspec'
+require 'capybara/poltergeist'
 
+Capybara.javascript_driver = :poltergeist
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -63,3 +65,14 @@ RSpec.configure do |config|
 
   config.include FactoryGirl::Syntax::Methods
 end
+
+# Share AR connection so phantomjs has access to test database.
+class ActiveRecord::Base
+  mattr_accessor :shared_connection
+  @@shared_connection = nil
+
+  def self.connection
+    @@shared_connection || retrieve_connection
+  end
+end
+ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection

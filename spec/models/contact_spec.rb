@@ -17,4 +17,19 @@ describe Contact, :type => :model do
 
   it { should accept_nested_attributes_for(:address) }
   it { should accept_nested_attributes_for(:phone_numbers) }
+
+  describe "#as_json" do
+    it "combines first and last name" do
+      c = FactoryGirl.create(:contact, first_name: "foo", last_name: "bar")
+      expect(c.as_json).to eq({ "full_name" => "foo bar", "id" => c.id })
+    end
+
+    it "works on collections" do
+      cs = FactoryGirl.create_pair(:contact, first_name: "foo", last_name: "bar")
+      expect(cs.as_json).to include(
+        { "full_name" => "foo bar", "id" => cs[0].id },
+        { "full_name" => "foo bar", "id" => cs[1].id }
+      )
+    end
+  end
 end

@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.4'
@@ -45,7 +46,10 @@ group :test do
   gem 'shoulda-matchers'
   gem 'capybara', git: "https://github.com/jnicklas/capybara.git"
   gem 'launchy'
+  gem 'poltergeist', '~> 1.5.0'
 end
 
-gem 'foundation-rails', '~> 5.2.2'
+gem 'rails-assets-foundation'
 gem 'foreigner', '~> 1.6.1'
+gem 'pg_search', '~> 0.7.3'
+gem 'rails-assets-typeahead.js'

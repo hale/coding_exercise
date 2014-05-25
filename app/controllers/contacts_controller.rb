@@ -20,13 +20,35 @@ class ContactsController < ApplicationController
     @contacts = Contact.all
   end
 
+  def autocomplete
+    results = searcher.search(on: params[:on], query: params[:query])
+    render json: results
+  end
+
+  def edit
+    @contact = Contact.find(params[:id])
+  end
+
+  def update
+    @contact = Contact.find(params[:id])
+    if @contact.update(contact_params)
+      redirect_to @contact, notice: "Contact succesfully updated."
+    else
+      render action: 'edit'
+    end
+  end
+
   private
+
+  def searcher
+    @searcher ||= Searcher.new
+  end
 
   def contact_params
     params.require(:contact).permit([
       :first_name, :last_name,
-      { address_attributes: [:line_1, :line_2, :city, :state, :zip_code] },
-      { phone_numbers_attributes: :number }
+      { address_attributes: [:id, :line_1, :line_2, :city, :state, :zip_code] },
+      { phone_numbers_attributes: [:number, :id] }
     ])
   end
 end
