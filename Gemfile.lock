@@ -144,6 +144,11 @@ GEM
     rails-assets-modernizr (2.8.2)
     rails-assets-typeahead.js (0.10.2)
       rails-assets-jquery (>= 1.7)
+    rails_12factor (0.0.2)
+      rails_serve_static_assets
+      rails_stdout_logging
+    rails_serve_static_assets (0.0.2)
+    rails_stdout_logging (0.0.3)
     railties (4.0.4)
       actionpack (= 4.0.4)
       activesupport (= 4.0.4)
@@ -239,6 +244,7 @@ DEPENDENCIES
   rails (= 4.0.4)
   rails-assets-foundation
   rails-assets-typeahead.js
+  rails_12factor
   rspec (~> 3.0.0.rc1)
   rspec-rails (~> 3.0.0.rc1)
   sass-rails (~> 4.0.2)

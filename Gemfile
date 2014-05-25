@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 source 'https://rails-assets.org'
 
+ruby '2.1.1'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.4'
 
@@ -54,3 +56,7 @@ gem 'foreigner', '~> 1.6.1'
 gem 'pg_search', '~> 0.7.3'
 gem 'rails-assets-typeahead.js'
 gem 'faker', '~> 1.3.0'
+
+group :production do
+  gem "rails_12factor"
+end
