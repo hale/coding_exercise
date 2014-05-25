@@ -1,0 +1,11 @@
+<h2><%= full_name(contact) %></h2>
+
+<% if contact.address %>
+  <h3>Address</h3>
+  <%= render contact.address %>
+<% end %>
+
+<% if contact.phone_numbers.any? %>
+  <h3>Numbers</h3>
+  <%= render contact.phone_numbers %>
+<% end %>

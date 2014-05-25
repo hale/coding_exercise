@@ -16,6 +16,10 @@ class ContactsController < ApplicationController
     @contact = Contact.find(params[:id])
   end
 
+  def index
+    @contacts = Contact.all
+  end
+
   private
 
   def contact_params

@@ -1,0 +1,7 @@
+<h2><%= "#{@contacts.count} Contacts" %></h2>
+
+<% @contacts.each do |contact| %>
+  <div class="panel radius">
+    <%= render contact %>
+  </div>
+<% end %>
