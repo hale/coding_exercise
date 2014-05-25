@@ -3,7 +3,9 @@ class Searcher
   SEARCH_SCOPES = [
     FIRST_NAME = "contact_first_name",
     LAST_NAME = "contact_last_name",
-    ADDRESS_LINE_1 = "address_line_1"
+    ADDRESS_LINE_1 = "address_line_1",
+    ADDRESS_STATE = "address_state",
+    ADDRESS_CITY = "address_city"
   ]
 
   def search(query:, on:)

@@ -25,4 +25,14 @@ describe "Searching for contacts" do
     click_button "Search"
     expect(page).to have_content("Ka Jarek")
   end
+
+  it "can search addresses" do
+    addr = FactoryGirl.create(:address, city: "Equestria")
+    FactoryGirl.create(:contact, address: addr, first_name: "Snails")
+    visit '/'
+    fill_in "search_input", with: "Equestria"
+    check "Address city"
+    click_button "Search"
+    expect(page).to have_content("Snails")
+  end
 end

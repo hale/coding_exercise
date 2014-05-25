@@ -52,5 +52,15 @@ describe Searcher do
       }.to raise_error
     end
 
+    it "can search through addresses" do
+      addr = FactoryGirl.create(:address, state: "California")
+      contact = FactoryGirl.create(:contact, address: addr)
+      results = searcher.multi_search(
+        query: "California",
+        scopes: ["address_state"]
+      )
+      expect(results).to eq([contact])
+    end
+
   end
 end
