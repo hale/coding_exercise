@@ -18,7 +18,12 @@ class Contact < ActiveRecord::Base
   pg_search_scope :search, lambda { |on, query|
     {
       against: on,
-      query: query
+      query: query,
+      using: {
+        trigram: {
+          threshold: 0.1
+        }
+      }
     }
   }
 
