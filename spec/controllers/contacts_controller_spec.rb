@@ -39,8 +39,8 @@ describe ContactsController, :type => :controller do
 
   describe "GET autocomplete" do
     it "conducts a search on a specific form field with the contents of the form" do
-      flexmock(Searcher).new_instances.should_receive(:search).with(query: "Katie", on: "first_name").once
-      get :autocomplete, { query: "Katie", on: "first_name" }
+      flexmock(Searcher).new_instances.should_receive(:search).with(query: "Katie", on: "contact_first_name").once
+      get :autocomplete, { query: "Katie", on: "contact_first_name" }
     end
 
     it "renders json of the contact, with ID and full name" do
