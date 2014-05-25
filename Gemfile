@@ -45,6 +45,7 @@ group :test do
   gem 'shoulda-matchers'
   gem 'capybara', git: "https://github.com/jnicklas/capybara.git"
   gem 'launchy'
+  gem 'poltergeist', '~> 1.5.0'
 end
 
 gem 'foundation-rails', '~> 5.2.2'
