@@ -13,7 +13,10 @@ describe ContactsController, :type => :controller do
     end
   end
 
-  let(:valid_attributes) { { first_name: "FirstName", last_name: "LastName" } }
+  let(:valid_attributes) {
+    { first_name: "FirstName", last_name: "LastName", 
+      phone_numbers_attributes: [{ number: "123-123-1234" }] }
+  }
 
   describe "POST create" do
     it "with valid params creates a new contact" do

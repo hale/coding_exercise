@@ -38,24 +38,59 @@ describe "Creating contacts" do
     end
 
     describe "creating a contact" do
-      it "can be submitted with valid attributes" do
-        visit '/contacts/new'
-        fill_in "contact_first_name", with: "Sue"
-        fill_in "contact_last_name", with: "Gherkins"
-        fill_in "contact_address_attributes_line_1", with: "32"
-        fill_in "contact_address_attributes_line_2", with: "Edmonson Street"
-        fill_in "contact_address_attributes_city", with: "San Jose"
-        fill_in "contact_address_attributes_state", with: "NY"
-        fill_in "contact_address_attributes_zip_code", with: "14378"
-        fill_in "contact_phone_numbers_attributes_0_number", with: "231-242-2211"
-        click_on "Create Contact"
-        expect(current_path).to match(/contacts\/\d/)
+      context "valid attributes" do
+        it "works when given full address and 2 phone numbers" do
+          visit '/contacts/new'
+          fill_in "contact_first_name", with: "Sue"
+          fill_in "contact_last_name", with: "Gherkins"
+          fill_in "contact_address_attributes_line_1", with: "32"
+          fill_in "contact_address_attributes_line_2", with: "Edmonson Street"
+          fill_in "contact_address_attributes_city", with: "San Jose"
+          fill_in "contact_address_attributes_state", with: "NY"
+          fill_in "contact_address_attributes_zip_code", with: "14378"
+          fill_in "contact_phone_numbers_attributes_0_number", with: "231-242-2211"
+          fill_in "contact_phone_numbers_attributes_1_number", with: "222-242-2211"
+          click_on "Create Contact"
+          expect(current_path).to match(/contacts\/\d/)
+        end
+
+        it "works when given only an address and no numbers" do
+          visit '/contacts/new'
+          fill_in "contact_first_name", with: "Sue"
+          fill_in "contact_last_name", with: "Gherkins"
+          fill_in "contact_address_attributes_line_1", with: "32"
+          fill_in "contact_address_attributes_line_2", with: "Edmonson Street"
+          fill_in "contact_address_attributes_city", with: "San Jose"
+          fill_in "contact_address_attributes_state", with: "NY"
+          fill_in "contact_address_attributes_zip_code", with: "14378"
+          click_on "Create Contact"
+          expect(current_path).to match(/contacts\/\d/)
+        end
+
+        it "works when given only a number and no address" do
+          visit '/contacts/new'
+          fill_in "contact_first_name", with: "Sue"
+          fill_in "contact_last_name", with: "Gherkins"
+          fill_in "contact_phone_numbers_attributes_0_number", with: "231-242-2211"
+          click_on "Create Contact"
+          expect(current_path).to match(/contacts\/\d/)
+        end
       end
 
-      it "shows errors with invalid attributes" do
-        visit '/contacts/new'
-        click_on "Create Contact"
-        expect(page).to have_selector("#error_explanation")
+      context "invalid attributes" do
+        it "shows errors when neither address nor a number given " do
+          visit '/contacts/new'
+          fill_in "contact_first_name", with: "Sue"
+          fill_in "contact_last_name", with: "Gherkins"
+          click_on "Create Contact"
+          expect(page).to have_selector("#error_explanation")
+        end
+
+        it "shows errors with no form data entered" do
+          visit '/contacts/new'
+          click_on "Create Contact"
+          expect(page).to have_selector("#error_explanation")
+        end
       end
     end
   end
