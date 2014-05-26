@@ -1,17 +1,26 @@
 <h2>Search contacts</h2>
 
 <%= form_tag(query_contacts_path, method: :get, id: "search_form") do %>
-  <div class="field">
-    <%= label_tag(:query, "Search contacts:") %>
-    <%= text_field_tag(:query, nil, id: "search_input") %>
+  <div class="row">
+    <div class="large-10 columns">
+      <div class="row collapse">
+        <div class="small-10 columns">
+          <%= text_field_tag(:query, nil, placeholder: "Query", id: "search_input") %>
+        </div>
+        <div class="small-2 columns">
+          <%= submit_tag("Search", class: "button postfix") %>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <% Searcher::SEARCH_SCOPES.each do |scope| %>
-    <div class="field">
-      <%= label_tag("scopes[][#{scope}]", scope.humanize) %>
-      <%= check_box_tag("scopes[][#{scope}]", scope, name: "scopes[]") %>
-    </div>
-  <% end %>
-
-  <%= submit_tag("Search") %>
+  <div class="large-6 columns">
+    <% Searcher::SEARCH_SCOPES.each do |scope| %>
+      <div class="field search_scope">
+        <%= check_box_tag("scopes[][#{scope}]", scope, name: "scopes[]") %>
+        <%= label_tag("scopes[][#{scope}]", scope.humanize) %>
+      </div>
+    <% end %>
+  </div>
+  <br>
 <% end %>
