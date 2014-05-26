@@ -8,8 +8,8 @@
 
 seed_count = 100 || ENV['SEED_COUNT']
 
-begin
-  seed_count.times do
+seed_count.times do
+  begin
     addr = Address.create!(
       line_1: Faker::Address.building_number,
       line_2: Faker::Address.street_address,
@@ -27,6 +27,6 @@ begin
         number: sprintf('%d%d%d-%d%d%d-%d%d%d%d', *(0..9).to_a.shuffle)
       )
     end
+  rescue
   end
-rescue
 end
