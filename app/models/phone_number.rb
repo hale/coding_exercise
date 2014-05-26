@@ -8,12 +8,7 @@ class PhoneNumber < ActiveRecord::Base
   after_destroy :promote_another_if_primary
 
   include PgSearch
-  pg_search_scope :search, lambda { |on, query|
-    {
-      against: on,
-      query: query
-    }
-  }
+  include PgSearchScope
 
   private
 

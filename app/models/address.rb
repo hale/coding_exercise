@@ -11,10 +11,5 @@ class Address < ActiveRecord::Base
   has_one :contact
 
   include PgSearch
-  pg_search_scope :search, lambda { |on, query|
-    {
-      against: on,
-      query: query
-    }
-  }
+  include PgSearchScope
 end

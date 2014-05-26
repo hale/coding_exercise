@@ -11,22 +11,21 @@ Contact Manager [![Code Climate](https://codeclimate.com/github/hale/coding_exer
     - autocomplete on first and last name for existing contacts
     - select autocomplete entry to edit that contact
 3. Partial matches
-    - “ja” will give results for “Janet” and “Jake”
+    - "ja" will give results for "Janet" and "Jake"
 4. Search page
     - Choose any combination of fields to search on
-    - Partial matches for name
+    - Partial matches on all fields.
 
 
 ### Current Limitations:
 
 * Cannot pick which number is primary.
-* Currently only trys to match contacts on first name and last name.
-* Search engine has high recall and low precision, may need fine-tuning to improve precision. (I.e. picking a better sensitivity value for trigram search).
-* No Householding
+* Match contacts applied to first name and last name only.
+* No Householding.
 
 ### Assumptions
 
-* It’s okay to split street_address into two fields for each line
+* It’s okay to split street\_address into two fields for each line
 * First name and second name can be two fields
 * People might use non-english characters for their name. E.g. accented characters.
 * Strict validation on phone number. For better UX some javascript can be added to try and coerce common number formats into ###-###-####
