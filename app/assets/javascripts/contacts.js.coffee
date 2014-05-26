@@ -21,7 +21,9 @@ selected_field = ()->
 
 @engine.initialize()
 
-$('input.contact_match').typeahead(null,
+$('input.contact_match').typeahead({
+    highlight: false
+  },
   displayKey: 'full_name',
   source: @engine.ttAdapter()
 ).bind "typeahead:selected", (obj, datum, name) ->
