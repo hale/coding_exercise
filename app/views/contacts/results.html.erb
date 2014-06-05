@@ -1,3 +1,70 @@
-<h2>Results for: "<%= params[:query] %>"</h2>
+<h2>Results for: "Pollich"</h2>
 
-<%= render @results %>
+<div class="panel" id="household-panel" hidden>
+  <h3>Add <strong>Alex Jones</strong> to <strong>Pollich, CA</strong> household?</h3>
+  <div class="row">
+    <div class="small-4 columns">
+      <p><em>Existing members</em></p>
+      <ul>
+        <li>Jason Pollich</li>
+        <li>Agatha Arnold</li>
+      </ul>
+    </div>
+    <div class="small-2 columns">
+      <form>
+        <button>Yes</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div id="search-results">
+
+  <div class="row" id="contact-result">
+    <div class="large-8 small-7 columns">
+      <h3>Rosanna Pollich<small> 01221 212221</small></h3>
+      <p>
+      <strong>23 Jute Street</strong><br />
+      Alberroyd Way<br />
+      Janestown
+      </p>
+    </div>
+    <div class="large-1 small-3 columns household-status">
+      <i class="fi-home"></i><br />
+      Pashmina Household
+    </div>
+  </div>
+  <hr />
+
+  <div class="row" id="contact-result">
+    <div class="large-8 small-7 columns">
+      <h3>Adriana Smith<small> 01221 212221</small></h3>
+      <p>
+      <strong>23 Jute Street</strong><br />
+      Alberroyd Way<br />
+      Janestown
+      </p>
+    </div>
+    <div class="large-1 small-3 columns household-status">
+      <i class="fi-home"></i><br />
+      Pashmina Household
+    </div>
+  </div>
+  <hr />
+
+  <div class="row" id="contact-result">
+    <div class="large-8 small-7 columns">
+      <h3>Alex Jones<small> 01221 212221</small></h3>
+      <p>
+      <strong>23 Jute Street</strong><br />
+      Alberroyd Way<br />
+      Janestown
+      </p>
+    </div>
+    <div class="large-1 small-3 columns no-household household-status">
+      <i class="fi-home"></i><br />
+    </div>
+  </div>
+  <hr />
+
+</div>

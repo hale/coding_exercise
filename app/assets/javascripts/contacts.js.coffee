@@ -31,3 +31,6 @@ $('input.contact_match').typeahead({
   window.location.reload()
   return
 
+$('#search-results .no-household').click ->
+  $('#household-panel').show()
+  return

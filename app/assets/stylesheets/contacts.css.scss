@@ -17,3 +17,35 @@ form#search_form .search_scope input {
   float: left;
 }
 
+/* RESULTS PAGE */
+
+#search-results .household-status {
+  text-align: center;
+  top: 30%;
+  padding: 0;
+  margin-right: 3em;
+}
+
+#search-results .no-household {
+  color: lightgrey;
+  cursor: pointer;
+}
+
+#search-results .no-household:hover {
+  color: black;
+}
+
+#search-results .household-status .fi-home{
+  font-size: 2em;
+}
+
+#search-results #contact-result {
+  height: 8em;
+}
+
+#search-results .result-heading {
+  text-align: center;
+  padding: 0;
+}
+
+
