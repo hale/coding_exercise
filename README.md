@@ -19,7 +19,7 @@ At a minimum, complete steps 1-3. I'd prefer to see steps 1-3 completed and
 working than see only the first step completed with an amazing design/UX. If you want 
 to demonstrate design skills, apply them to step 4 and/or 5. 
 
-1. Enter a new contact (this is a simplified format for US contacts)
+**1. Enter a new contact (this is a simplified format for US contacts)**
 
     contact [validation: name completed; zero or more addresses; zero or more phone; at least one phone or address]
         name [cross-field validation: all fields completed]
@@ -34,17 +34,19 @@ to demonstrate design skills, apply them to step 4 and/or 5.
             number [validation - ###-###-#### (10 numbers)]
             primary [validation- boolean; first one entered defaults to true; others default to false;
 
-2.  When entering a contact, try to match against any existing contacts if a match is found, allow the user to select that contact if a match is found, allow the user to edit those details if a match is found, allow the user to add missing details
+**2.  When entering a contact, try to match against any existing contacts if a match is found, allow the user to select that contact if a match is found, allow the user to edit those details if a match is found, allow the user to add missing details**
 
-3.  Allow search for contacts by field, allowing for wild card searches e.g.  search for everyone with a first name of jack or jason by searching 'ja'
+**3.  Allow search for contacts by field, allowing for wild card searches e.g.  search for everyone with a first name of jack or jason by searching 'ja'**
 
-4.  When entering a contact and a partial match is found, allow the user to 'household' 2+ contacts.
+**4.  When entering a contact and a partial match is found, allow the user to 'household' 2+ contacts.**
 
-5.  When searching for contacts and multiple results are found, allow the user to 'household' 2+ contacts.
+**5.  When searching for contacts and multiple results are found, allow the user to 'household' 2+ contacts.**
 
 ------------------------
 
 ## Implementation
+
+Specification complete up to householding. Mocks for householding contacts from search results can be viewed [here as a PDF](https://www.dropbox.com/s/ly9bo215kieax7m/contact_management_householding_mocks.pdf).
 
 ### Features
 
